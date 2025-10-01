@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import { LayoutGroup, motion } from "framer-motion";
 
 import Shuffle from "./components/Shuffle";
+import ClickSpark from "./components/ClickSpark";
 
 
 
@@ -145,74 +146,81 @@ export default function App() {
 
   return (
     <LayoutGroup>
-      <motion.nav className="bg-slate-950 h-screen overflow-hidden">
-        {/* header row */}
-        <div className="flex items-center justify-around px-4 py-1 mt-7">
-          <div className="text-3xl font-semibold text-white">Site</div>
-        </div>
-
-        <motion.div
-          layout
-          initial={false}
-          animate={{ height: open ? "auto" : 0 }}
-          transition={{ duration: 0.28, ease: [0.2, 0.8, 0.2, 1] }}
-          className="overflow-hidden"
-        >
-          
-          <nav className="p-4 block" aria-label="main navigation">
+      <ClickSpark
+        sparkColor='#fff'
+        sparkSize={10}
+        sparkRadius={15}
+        sparkCount={8}
+        duration={400}
+      >
+        <motion.nav className="relative bg-slate-950 h-screen overflow-hidden">
+          <motion.div
+            layout
+            initial={false}
+            animate={{ height: open ? "auto" : 0 }}
+            transition={{ duration: 0.28, ease: [0.2, 0.8, 0.2, 1] }}
+            className="relative w-full flex items-center bg-black/25 
+             border-b border-white/10 shadow-lg"
+          >
+            <div className="max-w-5xl h-14 px-4 pl-[30%]
+                  flex items-center justify-between text-white">
+              <div className="text-3xl font-semibold text-white">Site</div>
+            </div>
             
-            <ul className="flex flex-wrap items-center justify-center gap-10">
-              {navEntries.map(e => (
-                <li key={e.path}>
-                  <NavLink
-                    to={e.path}
-                    end
-                    className={({ isActive }) => [
-                        "inline-block",
-                        "transition-all duration-300 ease-in-out transform",
+            <nav className="flex ml-auto pr-[30%]" aria-label="main navigation">
+              <ul className="flex flex-wrap gap-10">
+                {navEntries.map(e => (
+                  <li key={e.path}>
+                    <NavLink
+                      to={e.path}
+                      end
+                      className={({ isActive }) => [
+                          "inline-block",
+                          "transition-all duration-300 ease-in-out transform",
 
-                        isActive
-                          ? "text-emerald-400 font-semibold -translate-y-0 scale-105"
-                          : "text-emerald-50 hover:-translate-y-0.5 hover:scale-105 hover:text-emerald-200 translate-y-0 scale-100"
-                      ].join(" ")
-                    }
-                  >{e.name}</NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </motion.div>
+                          isActive
+                            ? "text-emerald-400 font-semibold -translate-y-0 scale-105"
+                            : "text-emerald-50 hover:-translate-y-0.5 hover:scale-105 hover:text-emerald-200 translate-y-0 scale-100"
+                        ].join(" ")
+                      }
+                    >{e.name}</NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </motion.div>
 
-        <motion.main>
-          <Suspense fallback={
-              <div>
-                <Shuffle 
-                  text="Loading..."
-                  shuffleDirection="right"
-                  duration={0.35}
-                  animationMode="evenodd"
-                  shuffleTimes={1}
-                  ease="power3.out"
-                  stagger={0.03}
-                  threshold={0.1}
-                  triggerOnce={false}
-                  triggerOnHover={true}
-                  respectReducedMotion={true}
-                />
-              </div>
-            }>
-            <Routes>
-              {entries.map(([file, loader]) => {
-                const Component = React.lazy(loader);
-                const path = toRoute(file);
-                return <Route key={path} path={path} element={<Component />} />;
-              })}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>  
+          <motion.main>
+            <Suspense fallback={
+                <div>
+                  <Shuffle 
+                    text="Loading..."
+                    shuffleDirection="right"
+                    duration={0.35}
+                    animationMode="evenodd"
+                    shuffleTimes={1}
+                    ease="power3.out"
+                    stagger={0.03}
+                    threshold={0.1}
+                    triggerOnce={false}
+                    triggerOnHover={true}
+                    respectReducedMotion={true}
+                  />
+                </div>
+              }>
+              <Routes>
+                {entries.map(([file, loader]) => {
+                  const Component = React.lazy(loader);
+                  const path = toRoute(file);
+                  return <Route key={path} path={path} element={<Component />} />;
+                })}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>  
 
-        </motion.main>
-      </motion.nav>
+          </motion.main>
+        </motion.nav>
+      </ClickSpark>
     </LayoutGroup>
   );
 }
