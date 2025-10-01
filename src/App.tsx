@@ -153,7 +153,7 @@ export default function App() {
         sparkCount={8}
         duration={400}
       >
-        <motion.nav className="relative bg-slate-950 h-screen overflow-hidden">
+        <motion.nav className="relative bg-slate-950 h-screen">
           <motion.div
             layout
             initial={false}
@@ -168,7 +168,7 @@ export default function App() {
             </div>
             
             <nav className="flex ml-auto pr-[30%]" aria-label="main navigation">
-              <ul className="flex flex-wrap gap-10">
+              <ul className="flex flex-wrap gap-25">
                 {navEntries.map(e => (
                   <li key={e.path}>
                     <NavLink
