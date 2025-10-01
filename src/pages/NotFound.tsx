@@ -20,7 +20,7 @@ export default function NotFound() {
                     hoverIntensity={0.4}
                     enableHover={true}
 
-                    fontSize="clamp(2rem, 8vw, 4rem)"
+                    fontSize="clamp(1rem, 8vw, 4rem)"
                 >
                     Not Found
                 </FuzzyText>
