@@ -14,11 +14,13 @@ export default function NotFound() {
                     404
                 </FuzzyText>
             </div>
-            <div className="inline-block">
+            <div className="inline-block -mt-5">
                 <FuzzyText
                     baseIntensity={0.2}
                     hoverIntensity={0.4}
                     enableHover={true}
+
+                    fontSize="clamp(2rem, 8vw, 4rem)"
                 >
                     Not Found
                 </FuzzyText>
