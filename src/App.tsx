@@ -160,7 +160,7 @@ export default function App() {
             animate={{ height: open ? "auto" : 0 }}
             transition={{ duration: 0.28, ease: [0.2, 0.8, 0.2, 1] }}
             className="relative w-full flex items-center bg-black/25 
-             border-b border-white/10 [--gap:clamp(1rem,4cqw,16rem)] shadow-lg"
+             border-b border-white/10 [--gap:clamp(0.5rem,4cqw,16rem)] shadow-lg"
           >
             <div className="max-w-5xl h-14 px-4 pl-[30%]
                   flex items-center justify-between text-white">
